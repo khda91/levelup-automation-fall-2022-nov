@@ -22,18 +22,30 @@ public class Calculator {
         return a * b;
     }
 
-    public double multiply(double a, double b) {
-        return a * b;
-    }
+    public int pow(int a, int b) {
+        if (b < 0) {
+            throw new IllegalArgumentException("Не умеем считать отрицательные степени!!!");
+        }
 
-    public double divide(double a, double b) {
-        return a / b;
+        if (b == 0) {
+            return 1;
+        }
+
+        int result = 1;
+        for (int i = 1; i <= b; i++) {
+            result *= a;
+        }
+        return result;
     }
 
     public int divide(int a, int b) {
         if (b == 0) {
             throw new IllegalArgumentException("Делить на 0 нельзя!!!");
         }
+        return a / b;
+    }
+
+    public double divide(double a, double b) {
         return a / b;
     }
 }
