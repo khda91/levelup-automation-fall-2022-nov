@@ -24,8 +24,14 @@ public class App {
         System.out.println();
 
         System.out.println("===== Divide =====");
-        System.out.printf("%.2f / %.2f = %.2f%n", 2, 2, calculator.divide(2D, 2D));
-        System.out.printf("%.2f / %.2f = %.2f%n", 5, 10, calculator.divide(5D, 10D));
+        System.out.printf("%.2f / %.2f = %.2f%n", 2D, 2D, calculator.divide(2D, 2D));
+        System.out.printf("%.2f / %.2f = %.2f%n", 5D, 10D, calculator.divide(5D, 10D));
+        System.out.println("==========");
+        System.out.println();
+
+        System.out.println("===== Power =====");
+        System.out.printf("%d ^ %d = %d%n", 2, 2, calculator.pow(2, 2));
+        System.out.printf("%d ^ %d = %d%n", 5, 10, calculator.pow(5, 10));
         System.out.println("==========");
         System.out.println();
     }
