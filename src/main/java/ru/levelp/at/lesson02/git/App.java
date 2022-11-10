@@ -10,6 +10,12 @@ public class App {
         System.out.printf("%d + %d = %d%n", 5, 10, calculator.sum(5, 10));
         System.out.println("==========");
         System.out.println();
+
+        System.out.println("===== Subtract =====");
+        System.out.printf("%d - %d = %d%n", 2, 2, calculator.subtract(2, 2));
+        System.out.printf("%d - %d = %d%n", 5, 10, calculator.subtract(5, 10));
+        System.out.println("==========");
+        System.out.println();
     }
 
 }
