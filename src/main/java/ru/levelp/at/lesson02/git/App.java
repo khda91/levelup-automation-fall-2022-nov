@@ -11,6 +11,12 @@ public class App {
         System.out.println("==========");
         System.out.println();
 
+        System.out.println("===== Sum Double =====");
+        System.out.printf("%.2f + %.2f = %.2f%n", 2D, 2D, calculator.sum(2D, 2));
+        System.out.printf("%.2f + %.2f = %.2f%n", 5D, 10D, calculator.sum(5D, 10));
+        System.out.println("==========");
+        System.out.println();
+
         System.out.println("===== Subtract =====");
         System.out.printf("%d - %d = %d%n", 2, 2, calculator.subtract(2, 2));
         System.out.printf("%d - %d = %d%n", 5, 10, calculator.subtract(5, 10));
