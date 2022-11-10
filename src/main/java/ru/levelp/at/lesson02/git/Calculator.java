@@ -38,13 +38,6 @@ public class Calculator {
         return result;
     }
 
-    public int divide(int a, int b) {
-        if (b == 0) {
-            throw new IllegalArgumentException("Делить на 0 нельзя!!!");
-        }
-        return a / b;
-    }
-
     public double divide(double a, double b) {
         return a / b;
     }
