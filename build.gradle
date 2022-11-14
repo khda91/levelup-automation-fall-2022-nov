@@ -1,0 +1,48 @@
+plugins {
+    id 'java'
+    id 'checkstyle'
+}
+
+repositories {
+    mavenLocal()
+    maven {
+        url = uri('https://repo.maven.apache.org/maven2/')
+    }
+}
+
+dependencies {
+    implementation 'commons-io:commons-io:2.11.0'
+    testImplementation 'org.testng:testng:7.6.1'
+    testImplementation group: 'org.assertj', name: 'assertj-core', version: '3.23.1'
+}
+
+group = 'ru.levelp.at'
+version = '1.0-SNAPSHOT'
+description = 'levelup-automation-fall-2022-nov'
+java.sourceCompatibility = JavaVersion.VERSION_11
+java.targetCompatibility = JavaVersion.VERSION_11
+
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}
+
+tasks.named('test') {
+    useTestNG()
+}
+
+checkstyle {
+    showViolations = true
+    maxWarnings = 0
+    maxErrors = 0
+    toolVersion '10.3.3'
+    reportsDir = file("${buildDir}/reports/checkstyle")
+    configFile file("config/checkstyle/checkstyle.xml")
+}
+
+checkstyleMain {
+    source = 'src/main/java'
+}
+
+checkstyleTest {
+    source = 'src/test/java'
+}
