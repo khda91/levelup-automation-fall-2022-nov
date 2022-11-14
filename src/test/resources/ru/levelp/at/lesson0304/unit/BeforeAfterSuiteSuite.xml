@@ -1,0 +1,10 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+<suite name="Before - After Suite Tests List Manipulator">
+
+    <test name="Before - After Suite Test">
+        <classes>
+            <class name="ru.levelp.at.lesson0304.unit.ListManipulatorBeforeAfterSuiteTest"/>
+        </classes>
+    </test>
+
+</suite>
