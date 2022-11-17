@@ -1,6 +1,7 @@
 package ru.levelp.at.lesson0304.unit;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 public class ListManipulator {
@@ -15,6 +16,7 @@ public class ListManipulator {
         }
 
         return list.stream()
+            .filter(Objects::nonNull)
             .map(item -> item.replaceAll(letter + "|" + letter.toUpperCase(), ""))
             .collect(Collectors.toList());
     }
