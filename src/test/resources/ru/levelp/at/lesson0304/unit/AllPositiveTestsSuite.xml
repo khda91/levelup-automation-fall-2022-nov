@@ -1,0 +1,11 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+<suite name="All Positive Tests List Manipulator">
+
+    <test name="All Positive Test">
+        <classes>
+            <class name="ru.levelp.at.lesson0304.unit.ListManipulatorSampleTest"/>
+            <class name="ru.levelp.at.lesson0304.unit.ListManipulatorBeforeAfterClassTest"/>
+        </classes>
+    </test>
+
+</suite>

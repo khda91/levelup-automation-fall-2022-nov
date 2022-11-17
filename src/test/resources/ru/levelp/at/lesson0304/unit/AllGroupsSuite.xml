@@ -1,0 +1,25 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+<suite name="Groups Tests List Manipulator">
+
+    <test name="Positive Group">
+        <groups>
+            <run>
+                <include name="positive"/>
+            </run>
+        </groups>
+        <packages>
+            <package name="ru.levelp.at.lesson0304.unit.groups.*"/>
+        </packages>
+    </test>
+
+    <test name="Negative Group">
+        <groups>
+            <run>
+                <include name="negative"/>
+            </run>
+        </groups>
+        <packages>
+            <package name="ru.levelp.at.lesson0304.unit.groups.*"/>
+        </packages>
+    </test>
+</suite>

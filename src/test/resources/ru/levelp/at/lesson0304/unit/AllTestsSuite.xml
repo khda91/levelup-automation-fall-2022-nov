@@ -1,0 +1,10 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+<suite name="All Tests List Manipulator">
+
+    <test name="All Test">
+        <packages>
+            <package name="ru.levelp.at.lesson0304.unit.*"/>
+        </packages>
+    </test>
+
+</suite>

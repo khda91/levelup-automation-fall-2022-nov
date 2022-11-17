@@ -19,9 +19,49 @@
         <assertj-core.version>3.23.1</assertj-core.version>
 
         <maven-checkstyle-plugin.version>3.2.0</maven-checkstyle-plugin.version>
+        <maven-surefire-plugin.version>3.0.0-M7</maven-surefire-plugin.version>
     </properties>
 
     <dependencies>
+
+        <dependency>
+            <groupId>io.opentelemetry.javaagent</groupId>
+            <artifactId>opentelemetry-javaagent-tooling</artifactId>
+            <version>0.13.1</version>
+            <scope>runtime</scope>
+            <exclusions>
+                <exclusion>
+                    <groupId>com.google.guava</groupId>
+                    <artifactId>guava</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+        <dependency>
+            <groupId>com.codeborne</groupId>
+            <artifactId>selenide</artifactId>
+            <version>6.9.0</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>com.google.guava</groupId>
+                    <artifactId>guava</artifactId>
+                </exclusion>
+            </exclusions>
+            <!-- исключаем транзитивную зависимость не первого уровня -->
+<!--            <exclusions>-->
+<!--                <exclusion>-->
+<!--                    <groupId>org.brotli</groupId>-->
+<!--                    <artifactId>dec</artifactId>-->
+<!--                </exclusion>-->
+<!--            </exclusions>-->
+        </dependency>
+
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>31.1-jre</version>
+        </dependency>
+
         <dependency>
             <groupId>commons-io</groupId>
             <artifactId>commons-io</artifactId>
@@ -34,7 +74,73 @@
             <version>${assertj-core.version}</version>
             <scope>test</scope>
         </dependency>
+
+        <dependency>
+            <groupId>org.testng</groupId>
+            <artifactId>testng</artifactId>
+            <version>${testng.version}</version>
+            <scope>test</scope>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.webjars</groupId>
+                    <artifactId>jquery</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+        <dependency>
+            <groupId>org.webjars</groupId>
+            <artifactId>jquery</artifactId>
+            <version>3.6.1</version>
+        </dependency>
+
+
     </dependencies>
+
+    <profiles>
+        <profile>
+            <id>lesson0304-all-tests</id>
+            <properties>
+                <suite.xml.file.path>src/test/resources/ru/levelp/at/lesson0304/unit/AllTestsSuite.xml</suite.xml.file.path>
+            </properties>
+        </profile>
+        <profile>
+            <id>lesson0304-all-positive-tests</id>
+            <properties>
+                <suite.xml.file.path>src/test/resources/ru/levelp/at/lesson0304/unit/AllPositiveTestsSuite.xml</suite.xml.file.path>
+            </properties>
+        </profile>
+
+        <profile>
+            <id>lesson0304-before-after-suite-tests</id>
+            <activation>
+                <activeByDefault>false</activeByDefault>
+            </activation>
+            <properties>
+                <suite.xml.file.path>src/test/resources/ru/levelp/at/lesson0304/unit/BeforeAfterSuiteSuite.xml</suite.xml.file.path>
+            </properties>
+        </profile>
+
+        <profile>
+            <id>lesson0304-before-after-test-tests</id>
+            <activation>
+                <activeByDefault>false</activeByDefault>
+            </activation>
+            <properties>
+                <suite.xml.file.path>src/test/resources/ru/levelp/at/lesson0304/unit/BeforeAfterTestSuite.xml</suite.xml.file.path>
+            </properties>
+        </profile>
+
+        <profile>
+            <id>lesson0304-groups-test-tests</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <suite.xml.file.path>src/test/resources/ru/levelp/at/lesson0304/unit/AllGroupsSuite.xml</suite.xml.file.path>
+            </properties>
+        </profile>
+    </profiles>
 
     <build>
         <plugins>
@@ -69,6 +175,17 @@
                         </goals>
                     </execution>
                 </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>${maven-surefire-plugin.version}</version>
+                <configuration>
+                    <suiteXmlFiles>
+                        <suiteXmlFile>${project.basedir}/${suite.xml.file.path}</suiteXmlFile>
+                    </suiteXmlFiles>
+                </configuration>
             </plugin>
         </plugins>
     </build>
