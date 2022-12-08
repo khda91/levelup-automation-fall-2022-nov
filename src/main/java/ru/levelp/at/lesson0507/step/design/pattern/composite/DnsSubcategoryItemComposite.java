@@ -1,5 +1,7 @@
 package ru.levelp.at.lesson0507.step.design.pattern.composite;
 
+import io.qameta.allure.Allure;
+import io.qameta.allure.Step;
 import java.util.List;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -15,15 +17,20 @@ public class DnsSubcategoryItemComposite extends DnsBaseComposite {
         super(driver);
     }
 
+    @Step("Окрываем подкатегодрию {subcategoryName}")
     public void openSubcategory(final String subcategoryName) {
         List<WebElement> subcategoryItems = wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By
             .cssSelector(".subcategory__item span.subcategory__title")));
-        for (WebElement subcategoryItem : subcategoryItems) {
-            String subcategoryText = subcategoryItem.getText();
-            if (subcategoryName.equalsIgnoreCase(subcategoryText)) {
-                wait.until(ExpectedConditions.elementToBeClickable(subcategoryItem)).click();
-                break;
+        Allure.step("Ищем подкатегорию в списке", () -> {
+            for (WebElement subcategoryItem : subcategoryItems) {
+                String subcategoryText = subcategoryItem.getText();
+                if (subcategoryName.equalsIgnoreCase(subcategoryText)) {
+                    Allure.step("Кликаем по подкатегории", () -> {
+                        wait.until(ExpectedConditions.elementToBeClickable(subcategoryItem)).click();
+                    });
+                    break;
+                }
             }
-        }
+        });
     }
 }

@@ -1,6 +1,5 @@
-package ru.levelp.at.lesson0507.step.design.pattern;
+package ru.levelp.at.lesson1011.allure;
 
-import io.qameta.allure.Step;
 import java.time.Duration;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -8,7 +7,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import ru.levelp.at.lesson0507.step.design.pattern.composite.modal.DnsCompareLoginModal;
+import ru.levelp.at.lesson1011.allure.composite.modal.DnsCompareLoginModal;
 
 public abstract class DnsBasePage {
 
@@ -28,7 +27,6 @@ public abstract class DnsBasePage {
 
     public abstract void open();
 
-    @Step("Окрыть страницу " + URL + "{relativeUrl}")
     protected void open(String relativeUrl) {
         driver.navigate().to(URL + relativeUrl);
     }
