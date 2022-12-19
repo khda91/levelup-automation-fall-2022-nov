@@ -8,7 +8,9 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import ru.levelp.at.lesson1011.allure.EnvironmentGenerator;
 import ru.levelp.at.lesson1011.allure.ui.context.TestContext;
 import ru.levelp.at.lesson1011.allure.ui.listener.AllureAttachmentCallback;
 import ru.levelp.at.lesson1011.allure.ui.listener.AllureAttachmentReport;
@@ -40,6 +42,7 @@ public abstract class BaseSeleniumTest {
     @AfterEach
     public void tearDown() {
         System.out.println("tear down");
+        new EnvironmentGenerator(((RemoteWebDriver) driver).getCapabilities()).createProperties();
         driver.quit();
         TestContext.clear();
     }
