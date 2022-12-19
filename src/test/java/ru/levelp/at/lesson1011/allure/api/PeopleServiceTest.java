@@ -240,7 +240,7 @@ class PeopleServiceTest {
     RequestSpecification requestSpecification() {
         return new RequestSpecBuilder()
             .setBaseUri("http://localhost")
-            .setPort(8080)
+            .setPort(8082)
             .setBasePath("srv-person-profile")
             .setContentType(ContentType.JSON)
             .log(LogDetail.ALL)
