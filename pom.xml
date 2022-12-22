@@ -126,6 +126,12 @@
                 <suite.classes>**/lesson1011/**/ui/**/*Test.class</suite.classes>
             </properties>
         </profile>
+        <profile>
+            <id>lesson_12_factory_console</id>
+            <properties>
+                <suite.classes>**/lesson12/**/factory/*CliTest.class</suite.classes>
+            </properties>
+        </profile>
     </profiles>
 
     <build>
