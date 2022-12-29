@@ -7,6 +7,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import ru.levelp.at.taf.exception.BoardNotFoundException;
+import ru.levelp.at.taf.page.component.TrelloBoardCardComponent;
 
 public class TrelloBoardsPage extends BasePage {
 
@@ -32,7 +34,13 @@ public class TrelloBoardsPage extends BasePage {
     }
 
     public void openBoard(final String boardName) {
-        open();
+        wait.until(ExpectedConditions.visibilityOfAllElements(boards));
+        boards.stream()
+              .map(board -> new TrelloBoardCardComponent(driver, board))
+              .filter(board -> board.getTitle().equals(boardName))
+              .findFirst()
+              .orElseThrow(() -> new BoardNotFoundException(boardName))
+              .open();
     }
 
     public void clickCreateButton() {
@@ -47,9 +55,10 @@ public class TrelloBoardsPage extends BasePage {
         wait.until(ExpectedConditions.elementToBeClickable(createBoardButton)).click();
     }
 
-    public List<String> getBoards() {
+    public List<TrelloBoardCardComponent> getBoards() {
+        wait.until(ExpectedConditions.visibilityOfAllElements(boards));
         return boards.stream()
-                     .map(board -> wait.until(ExpectedConditions.visibilityOf(board)).getText())
+                     .map(board -> new TrelloBoardCardComponent(driver, board))
                      .collect(Collectors.toList());
     }
 

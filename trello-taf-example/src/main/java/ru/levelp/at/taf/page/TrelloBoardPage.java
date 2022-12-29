@@ -29,7 +29,6 @@ public class TrelloBoardPage extends BasePage {
     @FindBy(xpath = "//*[@data-testid='close-board-delete-board-confirm-button']")
     private WebElement closeBoardDeleteConfirmBoardButton;
 
-
     public TrelloBoardPage(WebDriver driver) {
         super(driver);
     }
@@ -48,7 +47,11 @@ public class TrelloBoardPage extends BasePage {
     }
 
     public void clickShowMenuButton() {
-        wait.until(ExpectedConditions.elementToBeClickable(showMenuButton)).click();
+        try {
+            wait.until(ExpectedConditions.elementToBeClickable(showMenuButton)).click();
+        } catch (StaleElementReferenceException e) {
+            wait.until(ExpectedConditions.elementToBeClickable(showMenuButton)).click();
+        }
     }
 
     public void clickMoreButton() {
