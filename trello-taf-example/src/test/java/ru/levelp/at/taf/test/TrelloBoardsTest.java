@@ -2,6 +2,7 @@ package ru.levelp.at.taf.test;
 
 import org.junit.jupiter.api.Test;
 import ru.levelp.at.taf.configuration.WebAppConfig;
+import ru.levelp.at.taf.service.api.TrelloBoardsClient;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -30,16 +31,21 @@ class TrelloBoardsTest extends BaseTest {
 
         var boardName = FAKER.funnyName().name();
 
+        var boardClient = new TrelloBoardsClient();
+        boardClient.createBoard(boardName);
+
         commonSteps.openTrello();
 
         loginSteps.login(username, password);
 
         var initialBoardAmount = boardSteps.getBoards();
 
+        boardSteps.openBoard(boardName);
+
         boardSteps.deleteBoard();
 
         var actualBoardAmount = boardSteps.getBoards();
 
-        assertThat(actualBoardAmount).isEqualTo(initialBoardAmount - 1);
+        assertThat(actualBoardAmount).hasSize(initialBoardAmount.size() - 1);
     }
 }

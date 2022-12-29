@@ -26,6 +26,18 @@ public interface WebAppConfig extends Config {
     @Key("selenium.explicit.wait.millis")
     Long explicitTimeout();
 
+    @Key("api.url")
+    String apiUrl();
+
+    @Key("api.base.path")
+    String basePath();
+
+    @Key("api.key")
+    String apiKey();
+
+    @Key("api.token")
+    String apiToken();
+
     static WebAppConfig getInstance() {
         return ConfigFactory.create(WebAppConfig.class);
     }

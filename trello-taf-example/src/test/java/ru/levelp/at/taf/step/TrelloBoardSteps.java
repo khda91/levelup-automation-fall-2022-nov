@@ -1,10 +1,13 @@
 package ru.levelp.at.taf.step;
 
-import static org.assertj.core.api.Assertions.assertThat;
-
 import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import ru.levelp.at.taf.page.TrelloBoardsPage.MenuItem;
+import ru.levelp.at.taf.page.component.TrelloBoardCardComponent;
+
+import java.util.List;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class TrelloBoardSteps extends BaseSteps {
 
@@ -37,11 +40,12 @@ public class TrelloBoardSteps extends BaseSteps {
         boardPage.clickCloseBoardDeleteConfirmBoardButton();
     }
 
-    public Integer getBoards() {
-        return boardsPage.getBoards().size();
+    public List<TrelloBoardCardComponent> getBoards() {
+        return boardsPage.getBoards();
     }
 
+    @Step("Открываем доску {boardName}")
     public void openBoard(final String boardName) {
-
+        boardsPage.openBoard(boardName);
     }
 }
